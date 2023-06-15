@@ -1,0 +1,26 @@
+yxtemp1 = []
+xyxtemp1 = []
+erxtemp1 = []
+sanxtemp1 = []
+sixtemp1 = []
+wuxtemp1 = []
+errotemp1 = []
+for index, row in data1.iterrows():
+    tp1 = row["类别"].split("，")[0]
+    tp2 = row["类别"].split("，")[1]
+    if tp2 in yxcity:
+        yxtemp1.append(np.array(row))
+    elif tp2 in xyxcity:
+        xyxtemp1.append(np.array(row))
+    elif tp2 in erxcity:
+        erxtemp1.append(np.array(row))
+    elif tp2 in sanxcity:
+        sanxtemp1.append(np.array(row))
+    elif tp2 in sixcity:
+        sixtemp1.append(np.array(row))
+    elif tp2 in wuxcity:
+        wuxtemp1.append(np.array(row))
+    else:
+        errotemp1.append(np.array(row))
+for i,j in zip([yxtemp1, xyxtemp1, erxtemp1, sanxtemp1, sixtemp1, wuxtemp1, errotemp1],["一", "新一", "二","三","四","五","误"]):
+    pd.DataFrame(i, columns=data1.columns).to_csv(f"./家乡城市/{j}.csv",encoding="utf_8_sig")
